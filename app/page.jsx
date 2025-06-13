@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ProductCard from './components/ProductCard';
 import SearchBar from './components/SearchBar';
 
@@ -12,23 +12,33 @@ export default function Home() {
   ];
 
   const [filteredProducts, setFilteredProducts] = useState(products);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSearch = (query) => {
-    const filtered = products.filter((product) =>
-      product.name.toLowerCase().includes(query.toLowerCase())
-    );
-    setFilteredProducts(filtered);
+    setIsLoading(true);
+    setTimeout(() => {
+      const filtered = products.filter((product) =>
+        product.name.toLowerCase().includes(query.toLowerCase())
+      );
+      setFilteredProducts(filtered);
+      setIsLoading(false);
+    }, 500); // Simulate loading delay
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
-      <header className="text-center py-12 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg shadow-lg">
-        <h1 className="text-4xl md:text-5xl font-bold">Eduhub-KMR Store</h1>
-        <p className="mt-2 text-lg md:text-xl">Discover Premium Educational Resources</p>
+    <div className="container py-8">
+      <header className="header-gradient text-center mb-8">
+        <h1>Eduhub-KMR Store</h1>
+        <p className="mt-2">Discover Premium Educational Resources</p>
       </header>
-      <SearchBar onSearch={handleSearch} />
+      <SearchBar onSearch={handleSearch} isLoading={isLoading} />
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-8">
-        {filteredProducts.length > 0 ? (
+        {isLoading ? (
+          <div className="col-span-full text-center">
+            <span className="loading-spinner"></span>
+            <p className="mt-2 text-gray-600">Searching...</p>
+          </div>
+        ) : filteredProducts.length > 0 ? (
           filteredProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))
