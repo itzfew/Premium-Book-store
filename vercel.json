@@ -1,32 +1,26 @@
 {
-  "version": 2,
+  "version": {
+    "required": 2
+  },
   "builds": [
-    {
-      "src": "api/create-order.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "public/**",
-      "use": "@vercel/static"
+    "src": {
+      "command": "next build",
+      "dest": "build"
     }
   ],
   "routes": [
-    {
-      "src": "/api/create-order",
-      "methods": ["POST"],
-      "dest": "/api/create-order.js"
-    },
-    {
-      "src": "/api/health",
-      "methods": ["GET"],
-      "dest": "/api/create-order.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/public/$1"
+    "src": "/_next/*",
+    "dest": "/_build",
+    "headers": {
+      "Cache-Control": "public, max-age=31536000, immutable"
     }
-  ],
-  "env": {
-    "NODE_ENV": "production"
+  },
+  {
+    "src": "/api/.*",
+    "dest": "build"
+  },
+  {
+    "src": "/.*",
+    "dest": "build"
   }
-}
+]
