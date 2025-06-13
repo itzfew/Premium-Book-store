@@ -1,3 +1,118 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Global Styles */
+body {
+  @apply font-inter text-gray-800 bg-gray-50 min-h-screen;
+}
+
+/* Custom Container for Consistent Padding */
+.container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Gradient Header */
+.header-gradient {
+  @apply bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-12 rounded-xl shadow-xl;
+}
+
+/* Product Card */
+.product-card {
+  @apply bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+}
+
+.product-card img {
+  @apply w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105;
+}
+
+/* Button Styles */
+.btn-primary {
+  @apply bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-all duration-200;
+}
+
+.btn-secondary {
+  @apply bg-teal-500 text-white py-2 px-4 rounded-lg font-medium hover:bg-teal-600 transition-all duration-200;
+}
+
+/* Search Bar */
+.search-bar {
+  @apply w-full max-w-md mx-auto px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-white shadow-sm;
+}
+
+/* Navbar */
+.navbar {
+  @apply bg-blue-600 text-white shadow-md sticky top-0 z-50;
+}
+
+.navbar-link {
+  @apply hover:text-teal-200 transition-colors duration-200;
+}
+
+.navbar-mobile-menu {
+  @apply bg-blue-700 md:hidden;
+}
+
+/* Checkout Card */
+.checkout-card {
+  @apply bg-white shadow-lg rounded-xl p-6 flex flex-col md:flex-row gap-6 border border-gray-100;
+}
+
+/* Image Placeholder */
+.image-placeholder {
+  @apply w-full h-48 bg-gray-200 flex items-center justify-center text-gray-500 rounded-lg;
+}
+
+/* Loading Animation for Search */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-spinner {
+  @apply inline-block w-5 h-5 border-2 border-blue-600 border-t-transparent rounded-full animate-[spin_0.75s_linear_infinite];
+}
+
+/* Responsive Typography */
+h1 {
+  @apply text-3xl sm:text-4xl md:text-5xl font-bold;
+}
+
+h2 {
+  @apply text-2xl sm:text-3xl font-semibold;
+}
+
+p {
+  @apply text-sm sm:text-base;
+}
+
+/* Custom Scrollbar for Large Screens */
+@media (min-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-100 rounded;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-blue-600 rounded hover:bg-blue-700;
+  }
+}
+
+/* Mobile-Specific Adjustments */
+@media (max-width: 640px) {
+  .product-card {
+    @apply shadow-sm;
+  }
+
+  .btn-primary {
+    @apply py-2 px-4;
+  }
+
+  .header-gradient {
+    @apply py-8 rounded-lg;
+  }
+}
