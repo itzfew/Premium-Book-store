@@ -95,4 +95,21 @@ body {
 /* Animations */
 @keyframes spin {
   to {
-    transform: rotate(
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 640px) {
+  .header-gradient h1 {
+    @apply text-3xl;
+  }
+
+  .checkout-card {
+    @apply flex-col;
+  }
+
+  .checkout-card img {
+    @apply w-full;
+  }
+}
