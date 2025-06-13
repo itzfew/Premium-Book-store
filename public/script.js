@@ -1,4 +1,3 @@
-// Cart management
 function addToCart(id, title, price) {
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
   const existingItem = cart.find(item => item.id === id);
