@@ -1,118 +1,98 @@
+/* app/globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Global Styles */
-body {
-  @apply font-inter text-gray-800 bg-gray-50 min-h-screen;
+/* Global Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Custom Container for Consistent Padding */
+body {
+  @apply bg-gray-50 text-gray-800 font-sans;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+}
+
+/* Container */
 .container {
   @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
 }
 
-/* Gradient Header */
+/* Header Gradient */
 .header-gradient {
-  @apply bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-12 rounded-xl shadow-xl;
+  @apply bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-8 rounded-lg shadow-lg;
+}
+
+.header-gradient h1 {
+  @apply text-4xl font-bold tracking-tight;
+}
+
+.header-gradient p {
+  @apply text-lg text-blue-100;
+}
+
+/* Button Primary */
+.btn-primary {
+  @apply bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
 }
 
 /* Product Card */
 .product-card {
-  @apply bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+  @apply bg-white rounded-xl shadow-lg overflow-hidden transform transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl;
 }
 
 .product-card img {
   @apply w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105;
 }
 
-/* Button Styles */
-.btn-primary {
-  @apply bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-all duration-200;
-}
-
-.btn-secondary {
-  @apply bg-teal-500 text-white py-2 px-4 rounded-lg font-medium hover:bg-teal-600 transition-all duration-200;
-}
-
-/* Search Bar */
-.search-bar {
-  @apply w-full max-w-md mx-auto px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-white shadow-sm;
-}
-
-/* Navbar */
-.navbar {
-  @apply bg-blue-600 text-white shadow-md sticky top-0 z-50;
-}
-
-.navbar-link {
-  @apply hover:text-teal-200 transition-colors duration-200;
-}
-
-.navbar-mobile-menu {
-  @apply bg-blue-700 md:hidden;
+.image-placeholder {
+  @apply w-full h-48 bg-gray-200 flex items-center justify-center text-gray-500 text-sm font-medium;
 }
 
 /* Checkout Card */
 .checkout-card {
-  @apply bg-white shadow-lg rounded-xl p-6 flex flex-col md:flex-row gap-6 border border-gray-100;
+  @apply bg-white rounded-xl shadow-lg p-6 flex flex-col md:flex-row gap-6;
 }
 
-/* Image Placeholder */
-.image-placeholder {
-  @apply w-full h-48 bg-gray-200 flex items-center justify-center text-gray-500 rounded-lg;
+/* Loading Spinner */
+.loading-spinner {
+  @apply inline-block w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin;
 }
 
-/* Loading Animation for Search */
+/* Navbar Styles */
+.navbar {
+  @apply bg-white shadow-md py-4 sticky top-0 z-10;
+}
+
+.navbar .nav-container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center;
+}
+
+.navbar .logo {
+  @apply text-2xl font-bold text-blue-600;
+}
+
+.nav-links a {
+  @apply text-gray-600 hover:text-blue-600 font-medium mx-4 transition-colors duration-200;
+}
+
+/* Search Bar */
+.search-bar {
+  @apply relative w-full max-w-md mx-auto;
+}
+
+.search-bar input {
+  @apply w-full py-3 px-4 pr-12 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all duration-200;
+}
+
+.search-bar button {
+  @apply absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-blue-600;
+}
+
+/* Animations */
 @keyframes spin {
   to {
-    transform: rotate(360deg);
-  }
-}
-
-.loading-spinner {
-  @apply inline-block w-5 h-5 border-2 border-blue-600 border-t-transparent rounded-full animate-[spin_0.75s_linear_infinite];
-}
-
-/* Responsive Typography */
-h1 {
-  @apply text-3xl sm:text-4xl md:text-5xl font-bold;
-}
-
-h2 {
-  @apply text-2xl sm:text-3xl font-semibold;
-}
-
-p {
-  @apply text-sm sm:text-base;
-}
-
-/* Custom Scrollbar for Large Screens */
-@media (min-width: 768px) {
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  ::-webkit-scrollbar-track {
-    @apply bg-gray-100 rounded;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    @apply bg-blue-600 rounded hover:bg-blue-700;
-  }
-}
-
-/* Mobile-Specific Adjustments */
-@media (max-width: 640px) {
-  .product-card {
-    @apply shadow-sm;
-  }
-
-  .btn-primary {
-    @apply py-2 px-4;
-  }
-
-  .header-gradient {
-    @apply py-8 rounded-lg;
-  }
-}
+    transform: rotate(
