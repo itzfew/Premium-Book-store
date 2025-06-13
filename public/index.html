@@ -8,4 +8,70 @@
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body class="bg-gray-50 text-book-primary">
-  <!--
+  <!-- Navbar -->
+  <nav class="bg-book-primary text-white shadow-lg">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="index.html" class="flex items-center space-x-2">
+        <img src="images/logo.png" alt="Logo" class="h-8">
+        <h1 class="text-2xl font-merriweather">Premium Book Store</h1>
+      </a>
+      <div class="flex items-center space-x-6">
+        <a href="index.html" class="hover:text-book-accent">Home</a>
+        <a href="cart.html" class="flex items-center hover:text-book-accent">
+          <span class="mr-2">Cart</span>
+          <span id="cart-count" class="bg-book-accent text-white rounded-full px-2 py-1 text-xs">0</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="bg-book-primary text-white py-16">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-4xl font-merriweather mb-4">Discover Premium Books</h2>
+      <p class="text-lg max-w-2xl mx-auto">Explore our curated collection of timeless classics and modern masterpieces.</p>
+    </div>
+  </section>
+
+  <!-- Book Listings -->
+  <section class="container mx-auto px-4 py-12">
+    <h2 class="text-3xl font-merriweather text-center mb-8">Our Collection</h2>
+    <div id="book-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-book-primary text-white py-8">
+    <div class="container mx-auto px-4 text-center">
+      <p>&copy; 2025 Premium Book Store. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script>
+    const books = [
+      { id: 1, title: "The Great Gatsby", author: "F. Scott Fitzgerald", price: 499, image: "https://images.unsplash.com/photo-1544947950-fa07a98d237f" },
+      { id: 2, title: "1984", author: "George Orwell", price: 399, image: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73" },
+      { id: 3, title: "Pride and Prejudice", author: "Jane Austen", price: 299, image: "https://images.unsplash.com/photo-1551024709-8f23befc6f87" },
+      { id: 4, title: "To Kill a Mockingbird", author: "Harper Lee", price: 449, image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c" },
+    ];
+
+    const bookList = document.getElementById('book-list');
+    books.forEach(book => {
+      const bookCard = document.createElement('div');
+      bookCard.className = 'bg-white rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition duration-300';
+      bookCard.innerHTML = `
+        <img src="${book.image}" alt="${book.title}" class="w-full h-64 object-cover">
+        <div class="p-4">
+          <h3 class="text-xl font-merriweather mb-2">${book.title}</h3>
+          <p class="text-gray-600 text-sm">${book.author}</p>
+          <p class="text-book-accent font-bold mt-2">₹${book.price}</p>
+          <button onclick="addToCart(${book.id}, '${book.title}', ${book.price})" class="mt-4 w-full bg-book-accent text-white py-2 rounded-md hover:bg-amber-600">Add to Cart</button>
+        </div>
+      `;
+      bookList.appendChild(bookCard);
+    });
+
+    updateCartCount();
+  </script>
+</body>
+</html>
