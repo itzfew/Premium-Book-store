@@ -10,7 +10,7 @@ export async function POST(request) {
   });
 
   const options = {
-    amount: amount.toString(), // Amount in paise
+    amount: amount.toString(),
     currency: 'INR',
     receipt: shortid.generate(),
     payment_capture: 1,
