@@ -4,7 +4,16 @@ module.exports = {
     './public/**/*.{html,js}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'book-primary': '#2D3748',
+        'book-accent': '#D97706',
+      },
+      fontFamily: {
+        'merriweather': ['Merriweather', 'serif'],
+        'inter': ['Inter', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 }
