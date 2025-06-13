@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 
-export default function SearchBar({ onSearch }) {
+export default function SearchBar({ onSearch, isLoading }) {
   const [query, setQuery] = useState('');
 
   const handleInputChange = (e) => {
@@ -11,14 +11,18 @@ export default function SearchBar({ onSearch }) {
   };
 
   return (
-    <div className="mt-6">
+    <div className="relative mt-6">
       <input
         type="text"
         value={query}
         onChange={handleInputChange}
         placeholder="Search for books..."
-        className="w-full max-w-md mx-auto px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+        className="search-bar"
+        disabled={isLoading}
       />
+      {isLoading && (
+        <span className="absolute right-4 top-1/2 -translate-y-1/2 loading-spinner"></span>
+      )}
     </div>
   );
 }
