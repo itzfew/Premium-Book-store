@@ -2,12 +2,16 @@
   "name": "premium-book-store",
   "version": "1.0.0",
   "scripts": {
-    "start": "node api/create-order.js"
+    "start": "node api/create-order.js",
+    "build:css": "tailwindcss -i ./src/input.css -o ./public/css/output.css --minify"
   },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
     "razorpay": "^2.9.4"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.14"
   }
 }
