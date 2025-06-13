@@ -1,31 +1,68 @@
-import Link from 'next/link';
+'use client';
+import { useEffect } from 'react';
+import Script from 'next/script';
 
-export default function Home() {
-  const products = [
-    { id: 1, name: 'Product 1', price: 499, image: '/product1.jpg' },
-    { id: 2, name: 'Product 2', price: 799, image: '/product2.jpg' },
-  ];
+export default function Checkout({ params }) {
+  const product = {
+    1: { name: 'Product 1', price: 499, amount: 49900 }, // Amount in paise
+    2: { name: 'Product 2', price: 799, amount: 79900 },
+  }[params.id];
+
+  const handlePayment = async () => {
+    const res = await fetch('/api/razorpay', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ amount: product.amount }),
+    });
+    const { id: order_id, currency, amount } = await res.json();
+
+    const options = {
+      key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
+      amount,
+      currency,
+      name: 'My E-Commerce Store',
+      description: product.name,
+      order_id,
+      handler: async function (response) {
+        // Verify payment on server
+        const verifyRes = await fetch('/api/verify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            razorpay_order_id: response.razorpay_order_id,
+            razorpay_payment_id: response.razorpay_payment_id,
+            razorpay_signature: response.razorpay_signature,
+          }),
+        });
+        const verifyData = await verifyRes.json();
+        if (verifyData.status === 'success') {
+          alert('Payment Successful! Payment ID: ' + response.razorpay_payment_id);
+        } else {
+          alert('Payment verification failed!');
+        }
+      },
+      prefill: { name: '', email: '', contact: '' },
+      theme: { color: '#528FF0' },
+    };
+
+    const rzp = new window.Razorpay(options);
+    rzp.open();
+  };
 
   return (
-    <div className="max-w-7xl mx-auto p-4">
-      <header className="text-center py-8">
-        <h1 className="text-4xl font-bold">My E-Commerce Store</h1>
-        <p className="text-gray-600">Shop the best products!</p>
-      </header>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {products.map((product) => (
-          <div key={product.id} className="border rounded-lg p-4 shadow-md">
-            <img src={product.image} alt={product.name} className="w-full h-48 object-cover rounded" />
-            <h2 className="text-xl font-semibold mt-2">{product.name}</h2>
-            <p className="text-gray-600">₹{product.price}</p>
-            <Link href={`/checkout/${product.id}`}>
-              <button className="mt-4 w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">
-                Buy Now
-              </button>
-            </Link>
-          </div>
-        ))}
+    <div className="max-w-3xl mx-auto my-16 p-4">
+      <h1 className="text-2xl font-bold mb-4">Checkout</h1>
+      <div className="border p-5 rounded">
+        <h2 className="text-xl font-semibold">{product.name}</h2>
+        <p className="text-gray-600">₹{product.price}</p>
+        <button
+          onClick={handlePayment}
+          className="mt-4 bg-blue-500 text-white py-2 px-6 rounded hover:bg-blue-600"
+        >
+          Pay Now
+        </button>
       </div>
+      <Script src="https://checkout.razorpay.com/v1/checkout.js" />
     </div>
   );
 }
