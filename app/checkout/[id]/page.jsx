@@ -1,5 +1,4 @@
 'use client';
-import { useEffect } from 'react';
 import Script from 'next/script';
 
 export default function Checkout({ params }) {
@@ -53,22 +52,23 @@ export default function Checkout({ params }) {
   };
 
   if (!product) {
-    return <div className="text-center py-16">Product not found</div>;
+    return <div className="container text-center py-16">Product not found</div>;
   }
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-8">
+    <div className="container py-8">
       <h1 className="text-3xl font-bold text-gray-800 mb-6">Checkout</h1>
-      <div className="bg-white shadow-lg rounded-lg p-6 flex flex-col md:flex-row gap-6">
-        <img src={product.image} alt={product.name} className="w-full md:w-1/3 h-48 object-cover rounded-lg" />
+      <div className="checkout-card">
+        {product.image ? (
+          <img src={product.image} alt={product.name} className="w-full md:w-1/3 h-48 object-cover rounded-lg" />
+        ) : (
+          <div className="image-placeholder">No Image</div>
+        )}
         <div className="flex-1">
           <h2 className="text-2xl font-semibold text-gray-800">{product.name}</h2>
           <p className="text-gray-600 mt-2">{product.description}</p>
           <p className="text-xl font-bold text-blue-600 mt-4">₹{product.price}</p>
-          <button
-            onClick={handlePayment}
-            className="mt-6 w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition"
-          >
+          <button onClick={handlePayment} className="btn-primary mt-6">
             Pay Now
           </button>
         </div>
