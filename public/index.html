@@ -4,8 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Premium Book Store</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/output.css">
 </head>
 <body class="bg-gray-100">
   <!-- Navbar -->
@@ -25,16 +24,14 @@
     <div id="book-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
   </div>
 
-  <script src="script.js"></script>
+  <script src="js/script.js"></script>
   <script>
-    // Sample book data (replace with API or database in production)
     const books = [
       { id: 1, title: "The Great Gatsby", author: "F. Scott Fitzgerald", price: 499, image: "https://via.placeholder.com/150" },
       { id: 2, title: "1984", author: "George Orwell", price: 399, image: "https://via.placeholder.com/150" },
       { id: 3, title: "Pride and Prejudice", author: "Jane Austen", price: 299, image: "https://via.placeholder.com/150" },
     ];
 
-    // Display books
     const bookList = document.getElementById('book-list');
     books.forEach(book => {
       const bookCard = document.createElement('div');
@@ -49,7 +46,6 @@
       bookList.appendChild(bookCard);
     });
 
-    // Update cart count
     updateCartCount();
   </script>
 </body>
