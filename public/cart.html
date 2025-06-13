@@ -5,23 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cart - Premium Book Store</title>
   <link rel="stylesheet" href="css/output.css">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
-<body class="bg-gray-100">
-  <nav class="bg-indigo-600 text-white p-4">
-    <div class="container mx-auto flex justify-between items-center">
-      <h1 class="text-2xl font-bold">Premium Book Store</h1>
-      <a href="index.html" class="text-white">Back to Home</a>
+<body class="bg-gray-50 text-book-primary">
+  <nav class="bg-book-primary text-white shadow-lg">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="index.html" class="flex items-center space-x-2">
+        <img src="images/logo.png" alt="Logo" class="h-8">
+        <h1 class="text-2xl font-merriweather">Premium Book Store</h1>
+      </a>
+      <div class="flex items-center space-x-6">
+        <a href="index.html" class="hover:text-book-accent">Home</a>
+        <a href="cart.html" class="flex items-center hover:text-book-accent">
+          <span class="mr-2">Cart</span>
+          <span id="cart-count" class="bg-book-accent text-white rounded-full px-2 py-1 text-xs">0</span>
+        </a>
+      </div>
     </div>
   </nav>
 
-  <div class="container mx-auto py-8">
-    <h2 class="text-3xl font-bold text-center mb-8">Your Cart</h2>
+  <section class="container mx-auto px-4 py-12">
+    <h2 class="text-3xl font-merriweather text-center mb-8">Your Cart</h2>
     <div id="cart-items" class="space-y-4"></div>
-    <div class="mt-8 flex justify-between items-center">
-      <h3 id="cart-total" class="text-xl font-bold">Total: ₹0</h3>
-      <a href="checkout.html" id="checkout-btn" class="bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700">Proceed to Checkout</a>
+    <div class="mt-8 flex justify-between items-center max-w-2xl mx-auto">
+      <h3 id="cart-total" class="text-xl font-merriweather">Total: ₹0</h3>
+      <a href="checkout.html" id="checkout-btn" class="bg-book-accent text-white py-2 px-6 rounded-md hover:bg-amber-600">Proceed to Checkout</a>
     </div>
-  </div>
+  </section>
+
+  <footer class="bg-book-primary text-white py-8">
+    <div class="container mx-auto px-4 text-center">
+      <p>&copy; 2025 Premium Book Store. All rights reserved.</p>
+    </div>
+  </footer>
 
   <script src="js/script.js"></script>
   <script>
