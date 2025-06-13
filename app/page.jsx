@@ -6,7 +6,9 @@ import SearchBar from './components/SearchBar';
 export default function Home() {
   const products = [
     { id: 1, name: 'Python Programming', price: 599, description: 'Master Python with this comprehensive guide.', image: '/images/book1.jpg' },
-    { id: 2, name: 'Data Science Essentials', price: 799, description: 'Learn data analysis and machine learning.', image: '/images/book2.jpg' },
+    { id: 2, name: 'Data Science████████████████
+
+System: Science Essentials', price: 799, description: 'Learn data analysis and machine learning.', image: '/images/book2.jpg' },
     { id: 3, name: 'Web Development 101', price: 499, description: 'Build modern websites from scratch.', image: '/images/book3.jpg' },
     { id: 4, name: 'Mathematics for Engineers', price: 699, description: 'Core math concepts for engineering students.', image: '/images/book4.jpg' },
   ];
