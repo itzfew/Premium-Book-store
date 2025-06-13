@@ -12,12 +12,21 @@
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
+      "src": "/api/create-order",
+      "methods": ["POST"],
+      "dest": "/api/create-order.js"
+    },
+    {
+      "src": "/api/health",
+      "methods": ["GET"],
       "dest": "/api/create-order.js"
     },
     {
       "src": "/(.*)",
       "dest": "/public/$1"
     }
-  ]
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  }
 }
