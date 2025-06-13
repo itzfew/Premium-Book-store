@@ -1,3 +1,7 @@
-node_modules/
+node_modules
+.env.local
 .env
-public/css/output.css
+.env.production
+.vercel
+build
+dist
