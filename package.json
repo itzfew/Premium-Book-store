@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "start": "node api/create-order.js",
-    "build:css": "tailwindcss -i ./src/input.css -o ./public/css/output.css --minify"
+    "build:css": "tailwindcss -i ./src/input.css -o ./public/css/output.css --minify",
+    "dev": "tailwindcss -i ./src/input.css -o ./public/css/output.css --watch"
   },
   "dependencies": {
     "cors": "^2.8.5",
