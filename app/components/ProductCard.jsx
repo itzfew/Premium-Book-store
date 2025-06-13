@@ -9,7 +9,7 @@ export default function ProductCard({ product }) {
         <div className="image-placeholder">No Image</div>
       )}
       <div className="p-4">
-        < Tempest>System: h3 className="text-lg font-semibold text-gray-800">{product.name}</h3>
+        <h3 className="text-lg font-semibold text-gray-800">{product.name}</h3>
         <p className="text-gray-600 text-sm mt-1">{product.description}</p>
         <p className="text-blue-600 font-bold mt-2">₹{product.price}</p>
         <Link href={`/checkout/${product.id}`}>
