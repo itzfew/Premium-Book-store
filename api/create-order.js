@@ -17,18 +17,17 @@ const razorpay = new Razorpay({
 app.post('/create-order', async (req, res) => {
   const { amount, currency } = req.body;
 
-  // Input validation
   if (!amount || !currency || isNaN(amount) || amount <= 0) {
     return res.status(400).json({ error: 'Invalid amount or currency' });
   }
 
   try {
     const order = await razorpay.orders.create({
-      amount: Number(amount), // Ensure amount is a number
+      amount: Number(amount),
       currency,
       receipt: `receipt_${Date.now()}`,
     });
-    res.json({
+    res.status(200).json({
       id: order.id,
       amount: order.amount,
       currency: order.currency,
@@ -39,9 +38,9 @@ app.post('/create-order', async (req, res) => {
   }
 });
 
-// Health check endpoint
 app.get('/health', (req, res) => {
-  res.json({ status: 'API is running' });
+  res.status(200).json({ status: 'API is running' });
 });
 
+// Export for Vercel
 module.exports = app;
