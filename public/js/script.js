@@ -38,14 +38,14 @@ function displayCart() {
     cartItem.className = 'bg-white p-4 rounded-lg shadow-md flex justify-between items-center';
     cartItem.innerHTML = `
       <div>
-        <h3 class="text-lg font-semibold">${item.title}</h3>
+        <h3 class="text-lg font-merriweather mb-2">${item.title}</h3>
         <p class="text-gray-600">₹${item.price} x ${item.quantity}</p>
       </div>
       <div class="flex items-center space-x-2">
-        <button onclick="updateQuantity(${item.id}, -1)" class="bg-gray-200 px-2 py-1 rounded">-</button>
+        <button onclick="updateQuantity(${item.id}, -1)" class="bg-gray-200 px-2 py-1 rounded hover:bg-gray-300">-</button>
         <span>${item.quantity}</span>
-        <button onclick="updateQuantity(${item.id}, 1)" class="bg-gray-200 px-2 py-1 rounded">+</button>
-        <button onclick="removeFromCart(${item.id})" class="text-red-500">Remove</button>
+        <button onclick="updateQuantity(${item.id}, 1)" class="bg-gray-200 px-2 py-1 rounded hover:bg-gray-300">+</button>
+        <button onclick="removeFromCart(${item.id})" class="text-red-500 hover:text-red-700">Remove</button>
       </div>
     `;
     cartItems.appendChild(cartItem);
