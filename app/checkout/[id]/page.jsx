@@ -14,7 +14,7 @@ export default function Checkout({ params }) {
   const handlePayment = async () => {
     const res = await fetch('/api/razorpay', {
       method: 'POST',
-      headers: { 'Content-Type': application/json' },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ amount: product.amount }),
     });
     const { id: order_id, currency, amount } = await res.json();
