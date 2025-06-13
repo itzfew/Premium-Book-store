@@ -1,9 +1,11 @@
 import Link from 'next/link';
+
 export default function Home() {
   const products = [
     { id: 1, name: 'Product 1', price: 499, image: '/product1.jpg' },
     { id: 2, name: 'Product 2', price: 799, image: '/product2.jpg' },
   ];
+
   return (
     <div className="max-w-7xl mx-auto p-4">
       <header className="text-center py-8">
